@@ -1,0 +1,66 @@
+<div class="whatsapp-chat">
+  <a target="_blank" href="https://wa.me/{{ block.settings.phone }}">
+    <span class="whatsapp-icon">
+      {% render 'whatsAppIcon' %}
+    </span>
+  </a>  
+</div>
+<style>
+.whatsapp-chat {
+    position: fixed;
+    z-index: 999;
+}
+
+{% case block.settings.position %}
+  {% when 'bottom_right' %}
+    .whatsapp-chat {
+    bottom: 20px;
+    right: 40px;
+}
+  {% when 'bottom_left' %}
+    .whatsapp-chat {
+    bottom: 20px;
+    left: 40px;
+}
+  {% else %}
+    .whatsapp-chat {
+    bottom: 20px;
+    left: 40px;
+}
+{% endcase %}
+
+  
+  .whatsapp-icon svg{
+    width: 50px;
+    height: 50px;
+  }
+  .whatsapp-chat img {
+    height: 45px;
+}
+</style>
+{% schema %}
+{
+  "name": "Chat Widget",
+  "target": "section",
+  "settings": [
+    { "type": "text", "id": "phone", "label": "Phone" },
+    {
+  "type": "select",
+  "id": "position",
+  "label": "Position",
+  "options": [
+    {
+      "value": "bottom_right",
+      "label": "Bottom Right"
+    },
+    {
+      "value": "bottom_left",
+      "label": "Bottom Left"
+    }
+  ],
+  "default": "bottom_right"
+}
+  ]
+}
+{% endschema %}
+
